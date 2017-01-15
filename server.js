@@ -18,23 +18,6 @@ const server = new WebpackDevServer(webpack(config), {
 const app = express();
 
 app.get('/peoples/', function (req, res) {
-    // people: PropTypes.shape({
-    //     nickname: PropTypes.string.isRequired,
-    //     gender: PropTypes.string.isRequired,
-    //     level: PropTypes.string.isRequired,
-    //     country: PropTypes.shape({
-    //         code: PropTypes.string.isRequired,
-    //         name: PropTypes.string.isRequired
-    //     }),
-    //     topics: PropTypes.arrayOf(PropTypes.shape({
-    //         id: PropTypes.string.isRequired,
-    //         name: PropTypes.string.isRequired
-    //     })),
-    //     contacts: PropTypes.arrayOf(PropTypes.shape({
-    //         type: PropTypes.string.isRequired,
-    //         value: PropTypes.string.isRequired
-    //     }))
-    // }).isRequired
     const peoples = {
         "peoples": [{
             nickname: "Dimorinny",
@@ -107,7 +90,7 @@ app.get('/peoples/', function (req, res) {
 
     setTimeout(function() {
         res.json(peoples);
-    }, 3000);
+    }, 1500);
 });
 
 server.listen(3000, 'localhost', function (err, result) {

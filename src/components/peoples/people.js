@@ -39,18 +39,10 @@ export default class People extends Component {
 
         return (
             <Table.Row>
-                <Table.Cell>
-                    { nickname }
-                </Table.Cell>
-                <Table.Cell>
-                    { People.getAvatar(gender) }
-                </Table.Cell>
-                <Table.Cell>
-                    { level }
-                </Table.Cell>
-                <Table.Cell>
-                    { People.getCountry(country) }
-                </Table.Cell>
+                <Table.Cell>{ nickname }</Table.Cell>
+                <Table.Cell>{ People.getAvatar(gender) }</Table.Cell>
+                <Table.Cell>{ level }</Table.Cell>
+                <Table.Cell>{ People.getCountry(country) }</Table.Cell>
                 <Table.Cell>
                     <div className='people_interests'>
                         { topics.map((item, index) => People.getTopic(item, index)) }

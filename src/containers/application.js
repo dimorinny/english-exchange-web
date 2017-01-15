@@ -19,13 +19,13 @@ export default class Application extends Component {
                 { children }
             </div>
         );
-    }
-}
+    };
+};
 
 function mapStateToProps(state) {
     return {router: state.router};
-}
+};
 
 function mapDispatchToProps(dispatch) {
     return {actions: bindActionCreators(actionCreators, dispatch)};
-}
+};

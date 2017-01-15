@@ -83,7 +83,6 @@ export default class People extends Component {
                 trigger={<Icon name={contact.type} color='grey' size='large'/>}
                 content='Contact with user'
                 positioning='top center'
-
             />
         );
     };

@@ -17,7 +17,7 @@ export default class PeoplesPage extends Component {
     componentDidMount() {
         let {actions} = this.props;
         actions.loadPeoples();
-    }
+    };
 
     render() {
         let {actions, peoplesState} = this.props;
@@ -36,17 +36,17 @@ export default class PeoplesPage extends Component {
                 <button onClick={() => PeoplesPage.handleLoadPeoplesButtonClicked(actions)}>Load</button>
             </div>
         );
-    }
+    };
 
     static handleLoadPeoplesButtonClicked(actions) {
         actions.loadPeoples()
-    }
+    };
 }
 
 function mapStateToProps(state) {
     return {peoplesState: state.people};
-}
+};
 
 function mapDispatchToProps(dispatch) {
     return {actions: bindActionCreators(actionCreators, dispatch)};
-}
+};

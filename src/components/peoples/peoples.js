@@ -21,8 +21,8 @@ export default class Peoples extends Component {
                 {Peoples.renderProgress(peoples, isPending)}
                 {Peoples.renderPeoples(peoples, isPending)}
             </Segment>
-        )
-    }
+        );
+    };
 
     static renderProgress(peoples, isPending) {
         if (isPending) {
@@ -38,7 +38,7 @@ export default class Peoples extends Component {
                 );
             }
         }
-    }
+    };
 
     static renderPeoples(peoples, isPending) {
         if (peoples.length != 0) {
@@ -71,11 +71,11 @@ export default class Peoples extends Component {
                 );
             }
         }
-    }
+    };
 
     static renderPeople(people, index) {
         return (
             <People key={ index } people={ people }/>
-        )
-    }
-}
+        );
+    };
+};

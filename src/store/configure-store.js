@@ -13,7 +13,7 @@ function configureStore(initialState) {
 
     enableHotLoader(store);
     return store;
-}
+};
 
 function getMiddleware() {
     let middleware = [
@@ -26,7 +26,7 @@ function getMiddleware() {
     }
 
     return applyMiddleware(...middleware);
-}
+};
 
 function getEnhancers() {
     let enhancers = [
@@ -38,7 +38,7 @@ function getEnhancers() {
     }
 
     return enhancers;
-}
+};
 
 function enableHotLoader(store) {
     if (__DEV__ && module.hot) {
@@ -47,6 +47,6 @@ function enableHotLoader(store) {
             store.replaceReducer(nextRootReducer);
         });
     }
-}
+};
 
 export default configureStore;

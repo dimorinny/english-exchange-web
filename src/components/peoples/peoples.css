@@ -1,0 +1,59 @@
+.peoples_segment {
+    min-height: 120px;
+}
+
+.border_blue {
+    border-top: 5px solid #2185D0 !important;
+}
+
+.peoples_table {
+    margin-top: 0 !important;
+}
+
+.peoples_empty {
+    margin-top: 32px !important;
+}
+
+/*Progress*/
+
+@keyframes h-move {
+    0% {
+        left: -300px;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+.peoples_progress_bar {
+    position: absolute;
+    width: 300px;
+    filter: blur(4px);
+    height: 5px;
+    background: #FFF;
+    transition: all 1s linear;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    top: -5px;
+    left: -5px;
+    animation-name: h-move;
+}
+
+.peoples_progress_bar.delay {
+    animation-delay: 0.5s;
+}
+
+/*Interests*/
+
+.people_interests {
+    overflow: hidden;
+    max-width: 490px;
+}
+
+.people_interest {
+    margin: 0 .5em .5em 0 !important;
+    padding: .4em .833em;
+    min-width: 3em;
+    text-align: center;
+}

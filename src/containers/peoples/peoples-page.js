@@ -1,5 +1,4 @@
 import React, {Component, PropTypes} from 'react';
-import {Grid} from 'semantic-ui-react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Peoples from '../../components/peoples/peoples';
@@ -25,14 +24,10 @@ export default class PeoplesPage extends Component {
 
         return (
             <div>
-                <Grid centered>
-                    <Grid.Column className='peoples_container' width={14}>
-                        <Peoples
-                            peoples={ peoples }
-                            isPending={ isPending }
-                            error={ error }/>
-                    </Grid.Column>
-                </Grid>
+                <Peoples
+                    peoples={ peoples }
+                    isPending={ isPending }
+                    error={ error }/>
                 <button onClick={() => PeoplesPage.handleLoadPeoplesButtonClicked(actions)}>Load</button>
             </div>
         );
@@ -45,8 +40,8 @@ export default class PeoplesPage extends Component {
 
 function mapStateToProps(state) {
     return {peoplesState: state.people};
-};
+}
 
 function mapDispatchToProps(dispatch) {
     return {actions: bindActionCreators(actionCreators, dispatch)};
-};
+}

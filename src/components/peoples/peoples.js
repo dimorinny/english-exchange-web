@@ -13,7 +13,7 @@ export default class Peoples extends Component {
     };
 
     render() {
-        const {className, peoples, isPending, error} = this.props;
+        const {className, peoples, isPending} = this.props;
         const containerClassName = className + ' peoples_segment border_blue';
 
         return (
@@ -47,7 +47,7 @@ export default class Peoples extends Component {
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell>Nickname</Table.HeaderCell>
-                            <Table.HeaderCell>Sex</Table.HeaderCell>
+                            <Table.HeaderCell>Gender</Table.HeaderCell>
                             <Table.HeaderCell>Level</Table.HeaderCell>
                             <Table.HeaderCell>Country</Table.HeaderCell>
                             <Table.HeaderCell>Topics</Table.HeaderCell>

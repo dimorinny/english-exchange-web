@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Peoples from '../../components/peoples/peoples';
-import * as actionCreators from '../../actions/people';
+import * as actionCreators from '../../actions/home';
 import './peoples-page.css';
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -16,6 +16,7 @@ export default class PeoplesPage extends Component {
     componentDidMount() {
         let {actions} = this.props;
         actions.loadPeoples();
+        actions.loadHome();
     };
 
     render() {
@@ -39,7 +40,10 @@ export default class PeoplesPage extends Component {
 }
 
 function mapStateToProps(state) {
-    return {peoplesState: state.people};
+    return {
+        peoplesState: state.people,
+        homeState: state.home
+    };
 }
 
 function mapDispatchToProps(dispatch) {

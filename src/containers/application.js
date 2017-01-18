@@ -1,17 +1,14 @@
 import React, {Component, PropTypes} from 'react';
 import {Grid} from 'semantic-ui-react';
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Header from '../components/header/header';
 import UserForm from '../components/form/add-user-form';
-import * as actionCreators from '../actions/people';
 import './application.css';
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Application extends Component {
 
     static propTypes = {
-        actions: PropTypes.object.isRequired,
         children: React.PropTypes.node.isRequired
     };
 
@@ -41,5 +38,5 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return {actions: bindActionCreators(actionCreators, dispatch)};
+    return {};
 }

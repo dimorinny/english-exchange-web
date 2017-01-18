@@ -1,6 +1,12 @@
 import React, {Component, PropTypes} from 'react';
 import {Image, Icon, Flag, Popup, Table, Label} from 'semantic-ui-react'
 
+const fieldTypes = PropTypes.shape({
+    code: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired
+});
+
+
 export default class People extends Component {
 
     static GENDER_INFO = {
@@ -17,20 +23,11 @@ export default class People extends Component {
     static propTypes = {
         people: PropTypes.shape({
             nickname: PropTypes.string.isRequired,
-            gender: PropTypes.string.isRequired,
-            level: PropTypes.string.isRequired,
-            country: PropTypes.shape({
-                code: PropTypes.string.isRequired,
-                name: PropTypes.string.isRequired
-            }),
-            topics: PropTypes.arrayOf(PropTypes.shape({
-                id: PropTypes.string.isRequired,
-                name: PropTypes.string.isRequired
-            })),
-            contacts: PropTypes.arrayOf(PropTypes.shape({
-                type: PropTypes.string.isRequired,
-                value: PropTypes.string.isRequired
-            }))
+            gender: fieldTypes.isRequired,
+            level: fieldTypes.isRequired,
+            country: fieldTypes.isRequired,
+            topics: PropTypes.arrayOf(fieldTypes).isRequired,
+            contacts: PropTypes.arrayOf(fieldTypes).isRequired,
         }).isRequired
     };
 
@@ -41,7 +38,7 @@ export default class People extends Component {
             <Table.Row>
                 <Table.Cell>{ nickname }</Table.Cell>
                 <Table.Cell>{ People.getAvatar(gender) }</Table.Cell>
-                <Table.Cell>{ level }</Table.Cell>
+                <Table.Cell>{ level.name }</Table.Cell>
                 <Table.Cell>{ People.getCountry(country) }</Table.Cell>
                 <Table.Cell>
                     <div className='people_interests'>
@@ -56,7 +53,7 @@ export default class People extends Component {
     };
 
     static getAvatar(gender) {
-        const {avatar, info} = People.GENDER_INFO[gender];
+        const {avatar, info} = People.GENDER_INFO[gender.code];
         return (
             <Popup
                 trigger={<Image src={avatar} avatar/>}
@@ -80,7 +77,7 @@ export default class People extends Component {
         return (
             <Popup
                 key={index}
-                trigger={<Icon name={contact.type} color='grey' size='large'/>}
+                trigger={<Icon name={contact.code} color='grey' size='large'/>}
                 content='Contact with user'
                 positioning='top center'
             />

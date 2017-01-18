@@ -22,9 +22,6 @@ export default class Application extends Component {
                         <Header/>
                     </Grid.Column>
                     <Grid.Column className='container' width={14}>
-                        <UserForm/>
-                    </Grid.Column>
-                    <Grid.Column className='container' width={14}>
                         { children }
                     </Grid.Column>
                 </Grid>

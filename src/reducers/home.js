@@ -2,8 +2,11 @@ import typeToReducer from 'type-to-reducer';
 import {LOAD_HOME} from '../constants';
 
 const HOME_DEFAULT_STATE = {
-    home: {},
-    isPending: false,
+    home: {
+        user: {},
+        form: {}
+    },
+    isPending: true,
     error: null
 };
 

@@ -149,24 +149,24 @@ app.get('/home/', function (req, res) {
                 name: "France",
             },
             topics: [{
-                id: "12xcsdf",
+                code: "school",
                 name: "School"
             }, {
-                id: "12xcsd4",
+                code: "country",
                 name: "Country"
             }],
             contacts: [{
-                type: "skype",
-                value: "dimorinny"
+                code: "skype",
+                name: "dimorinny"
             }, {
-                type: "vk",
-                value: "dimorinny"
+                code: "vk",
+                name: "dimorinny"
             }]
         }
     };
 
     setTimeout(function () {
-        res.json(home);
+        res.json({home: home});
     }, 1500);
 });
 

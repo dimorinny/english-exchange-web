@@ -3,7 +3,7 @@ import {LOAD_PEOPLES} from '../constants';
 
 const PEOPLES_DEFAULT_STATE = {
     peoples: [],
-    isPending: false,
+    isPending: true,
     error: null
 };
 

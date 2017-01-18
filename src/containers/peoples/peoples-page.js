@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Peoples from '../../components/peoples/peoples';
+import UserForm from '../../components/form/add-user-form';
 import * as actionCreators from '../../actions/home';
 import './peoples-page.css';
 
@@ -20,17 +21,39 @@ export default class PeoplesPage extends Component {
     };
 
     render() {
-        let {actions, peoplesState} = this.props;
-        let {peoples, isPending, error} = peoplesState;
+        const {actions, peoplesState, homeState} = this.props;
 
         return (
             <div>
-                <Peoples
-                    peoples={ peoples }
-                    isPending={ isPending }
-                    error={ error }/>
+                {PeoplesPage.renderUserForm(homeState)}
+                {PeoplesPage.renderPeoples(peoplesState)}
                 <button onClick={() => PeoplesPage.handleLoadPeoplesButtonClicked(actions)}>Load</button>
             </div>
+        );
+    };
+
+    static renderUserForm(homeState) {
+        const {home, isPending, error} = homeState;
+        const {form, user} = home;
+
+        return (
+            <UserForm
+                isPending={isPending}
+                error={error}
+                form={form}
+                user={user}/>
+        );
+    };
+
+    static renderPeoples(peoplesState) {
+        const {peoples, isPending, error} = peoplesState;
+
+        return (
+            <Peoples
+                className='peoples_container'
+                peoples={ peoples }
+                isPending={ isPending }
+                error={ error }/>
         );
     };
 

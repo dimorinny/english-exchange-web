@@ -59,16 +59,29 @@ export default class UserForm extends Component {
                             options={levels}
                             placeholder='Level'/>
                     </Form.Group>
+
                     <Form.Group widths='equal'>
                         <Form.Select
                             label='Country'
                             name='country'
                             options={products}
-                            placeholder='Search Country...'
+                            placeholder='Country'
                             search/>
-                        <Form.Select label='Products' name='products' options={products} placeholder='Search...' search
-                                     multiple/>
+
+                        <Form.Input
+                            label='Skype'
+                            name='skype'
+                            placeholder='Skype'/>
                     </Form.Group>
+
+                    <Form.Select
+                        label='Topics'
+                        name='topics'
+                        options={products}
+                        placeholder='Topics'
+                        search
+                        multiple/>
+
                     <Button primary type='submit'>Submit</Button>
                 </Form>
             </div>

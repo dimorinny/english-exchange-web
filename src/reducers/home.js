@@ -1,5 +1,11 @@
 import typeToReducer from 'type-to-reducer';
-import {LOAD_HOME} from '../constants';
+import {
+    LOAD_HOME,
+    ADD_USER,
+    CHANGE_USER,
+    CHANGE_FORM,
+    FORM_LOADED
+} from '../constants';
 
 const HOME_DEFAULT_STATE = {
     home: {
@@ -7,6 +13,7 @@ const HOME_DEFAULT_STATE = {
         form: {}
     },
     isPending: true,
+    addUserIsPending: false,
     error: null
 };
 
@@ -17,16 +24,30 @@ export default typeToReducer({
             isPending: true,
             error: null
         }),
-        REJECTED: (state, action) => ({
+    },
+    [ADD_USER]: {
+        PENDING: (state, action) => ({
             ...state,
-            isPending: false,
-            error: action.payload.error
+            addUserIsPending: true,
         }),
-        FULFILLED: (state, action) => ({
-            ...state,
-            home: action.payload.home,
-            isPending: false,
-            error: null
-        })
-    }
+    },
+    [CHANGE_USER]: (state, action) => ({
+        ...state,
+        home: {
+            ...state.home,
+            user: action.payload
+        },
+    }),
+    [CHANGE_FORM]: (state, action) => ({
+        ...state,
+        home: {
+            ...state.home,
+            form: action.payload
+        },
+    }),
+    [FORM_LOADED]: (state, action) => ({
+        ...state,
+        addUserIsPending: false,
+        isPending: false,
+    }),
 }, HOME_DEFAULT_STATE);

@@ -2,7 +2,6 @@ import React, {Component, PropTypes} from 'react';
 import {Grid} from 'semantic-ui-react';
 import {connect} from 'react-redux';
 import Header from '../components/header/header';
-import UserForm from '../components/form/add-user-form';
 import './application.css';
 
 @connect(mapStateToProps, mapDispatchToProps)

@@ -9,7 +9,7 @@ const server = new WebpackDevServer(webpack(config), {
     historyApiFallback: true,
     proxy: [
         {
-            path: '^\/(home|peoples)/',
+            path: '^\/(home|peoples|user)/',
             target: 'http://localhost:3001'
         }
     ]
@@ -151,6 +151,36 @@ app.get('/home/', function (req, res) {
             topics: [{
                 code: "school",
                 name: "School"
+            }],
+            contacts: [{
+                code: "skype",
+                name: "dimorinny"
+            }, {
+                code: "vk",
+                name: "dimorinny"
+            }]
+        }
+    };
+
+    setTimeout(function () {
+        res.json({home: home});
+    }, 50);
+});
+
+app.post('/user/', function (req, res) {
+    console.log(req);
+    const user = {
+        user: {
+            nickname: "Dimorinny1",
+            gender: "male",
+            level: "beginner",
+            country: {
+                code: "fr",
+                name: "France",
+            },
+            topics: [{
+                code: "school",
+                name: "School"
             }, {
                 code: "country",
                 name: "Country"
@@ -166,8 +196,8 @@ app.get('/home/', function (req, res) {
     };
 
     setTimeout(function () {
-        res.json({home: home});
-    }, 1500);
+        res.json(user);
+    }, 50);
 });
 
 server.listen(3000, 'localhost', function (err, result) {

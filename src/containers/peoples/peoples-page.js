@@ -17,7 +17,7 @@ export default class PeoplesPage extends Component {
     componentDidMount() {
         let {actions} = this.props;
         actions.loadPeoples();
-        actions.loadHome();
+        actions.loadHome(actions);
     };
 
     render() {
@@ -25,22 +25,29 @@ export default class PeoplesPage extends Component {
 
         return (
             <div>
-                {PeoplesPage.renderUserForm(homeState)}
+                {PeoplesPage.renderUserForm(homeState, actions)}
                 {PeoplesPage.renderPeoples(peoplesState)}
                 <button onClick={() => PeoplesPage.handleLoadPeoplesButtonClicked(actions)}>Load</button>
             </div>
         );
     };
 
-    static renderUserForm(homeState) {
-        const {home, isPending, error} = homeState;
+    static renderUserForm(homeState, actions) {
+        const {home, isPending, addUserIsPending, error} = homeState;
         const {form, user} = home;
 
         return (
             <UserForm
                 isPending={isPending}
+                addUserIsPending={addUserIsPending}
                 error={error}
                 form={form}
+                addUserClicked={(user) => {
+                    actions.createUser(actions, user)
+                }}
+                formChanged={(user) => {
+                    actions.changeUser(user)
+                }}
                 user={user}/>
         );
     };

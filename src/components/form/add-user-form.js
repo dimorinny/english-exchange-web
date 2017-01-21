@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {Form, Button} from 'semantic-ui-react';
+import {Form, Button, Message, Icon} from 'semantic-ui-react';
 import './add-user-form.css';
 
 function toSemanticItem(item) {
@@ -9,13 +9,29 @@ function toSemanticItem(item) {
     };
 }
 
+function toFlagSemanticItem(item) {
+    return {
+        text: item.name,
+        value: item.code,
+        flag: item.code
+    };
+}
+
+function getCode(item) {
+    if (item.code) {
+        return item.code;
+    } else {
+        return '';
+    }
+}
+
 function getUserSkype(contacts) {
     const skypeItem = contacts.find((item) => item.code == 'skype');
 
     if (skypeItem) {
         return skypeItem.name
     } else {
-        return null
+        return ''
     }
 }
 
@@ -29,7 +45,8 @@ export default class UserForm extends Component {
         addUserIsPending: PropTypes.bool.isRequired,
         addUserClicked: PropTypes.func.isRequired,
         formChanged: PropTypes.func.isRequired,
-        error: PropTypes.object
+        error: PropTypes.string,
+        addUserError: PropTypes.string
     };
 
     render() {
@@ -37,6 +54,7 @@ export default class UserForm extends Component {
 
         return (
             <div className={className}>
+                {this.renderError()}
                 {this.renderForm()}
             </div>
         );
@@ -95,10 +113,23 @@ export default class UserForm extends Component {
         }
     };
 
-    renderForm() {
-        const {user, form, isPending, addUserIsPending, error} = this.props;
+    renderError() {
+        const {addUserError} = this.props;
 
-        if (!isPending && !error) {
+        if (addUserError) {
+            return (
+                <Message warning attached='bottom'>
+                    <Icon name='warning'/>
+                    {addUserError}
+                </Message>
+            );
+        }
+    }
+
+    renderForm() {
+        const {user, form, isPending, addUserIsPending} = this.props;
+
+        if (!isPending) {
             return (
                 <Form
                     loading={addUserIsPending}
@@ -115,32 +146,33 @@ export default class UserForm extends Component {
                             label='Gender'
                             name='gender'
                             options={form.gender.map(toSemanticItem)}
-                            value={user.gender}
-                            onChange={(event, {value}) => this.handleChange('gender', value)}
+                            value={getCode(user.gender)}
+                            onChange={(event, {value}) => this.handleChangeSelectionItem('gender', value)}
                             placeholder='Gender'/>
 
                         <Form.Select
                             label='Level'
                             name='level'
                             options={form.level.map(toSemanticItem)}
-                            value={user.level}
-                            onChange={(event, {value}) => this.handleChange('level', value)}
+                            value={getCode(user.level)}
+                            onChange={(event, {value}) => this.handleChangeSelectionItem('level', value)}
                             placeholder='Level'/>
 
                         <Form.Select
                             label='Country'
                             name='country'
-                            options={form.country.map(toSemanticItem)}
-                            value={user.country.code}
+                            options={form.country.map(toFlagSemanticItem)}
+                            value={getCode(user.country)}
                             onChange={(event, {value}) => this.handleChangeSelectionItem('country', value)}
                             placeholder='Country'
                             search/>
                     </Form.Group>
 
-                    <Form.Group widths='equal'>
+                    <Form.Group widths={16}>
                         <Form.Input
                             label='Skype'
                             name='skype'
+                            width={4}
                             value={getUserSkype(user.contacts)}
                             onChange={(event, {value}) => this.handleChangeContact('skype', value)}
                             placeholder='Skype'/>
@@ -148,6 +180,7 @@ export default class UserForm extends Component {
                         <Form.Select
                             label='Topics'
                             name='topics'
+                            width={12}
                             options={form.topics.map(toSemanticItem)}
                             value={user.topics.map((item) => item.code)}
                             onChange={(event, {value}) => this.handleChangeTopics('topics', value)}

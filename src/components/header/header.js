@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {Header as SemanticHeader, Icon} from 'semantic-ui-react';
+import {Header as SemanticHeader} from 'semantic-ui-react';
 import './header.css';
 
 export default class Header extends Component {
@@ -13,12 +13,12 @@ export default class Header extends Component {
 
         return (
             <div className={className}>
-                <SemanticHeader as='h2' icon textAlign='center'>
-                    <Icon name='student'/>
-                    <SemanticHeader.Content>
-                        Learn English 365
-                    </SemanticHeader.Content>
-                </SemanticHeader>
+                <SemanticHeader
+                    className='header_container'
+                    as='h2'
+                    icon='talk outline'
+                    content='365 English'
+                />
             </div>
         );
     };

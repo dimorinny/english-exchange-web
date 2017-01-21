@@ -12,7 +12,11 @@ export function addUser(actions, user) {
     })
         .then((r) => r.json())
         .then((r) => {
+            if (r.error) {
+                throw new Error(r.error)
+            }
+            actions.loadPeoples();
             actions.changeUser(r.user);
             actions.formLoaded();
-        })
+        });
 }

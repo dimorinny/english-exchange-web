@@ -1,11 +1,10 @@
 import React, {Component, PropTypes} from 'react';
-import {Image, Icon, Flag, Popup, Table, Label} from 'semantic-ui-react'
+import {Image, Icon, Flag, Popup, Table, Label} from 'semantic-ui-react';
 
 const fieldTypes = PropTypes.shape({
     code: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired
 });
-
 
 export default class People extends Component {
 
@@ -65,11 +64,10 @@ export default class People extends Component {
 
     static getCountry(country) {
         return (
-            <Popup
-                trigger={<Flag name={country.code}/>}
-                content={country.name}
-                positioning='right center'
-            />
+            <div>
+                <Flag name={country.code}/>
+                <span>{country.name}</span>
+            </div>
         );
     };
 

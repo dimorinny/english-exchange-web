@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {Table, Header, Icon, Segment, Loader, Dimmer} from 'semantic-ui-react'
+import {Table, Header, Icon, Segment, Loader, Dimmer} from 'semantic-ui-react';
 import People from './people';
 import './peoples.css';
 

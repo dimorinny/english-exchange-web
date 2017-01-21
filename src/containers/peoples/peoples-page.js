@@ -18,7 +18,19 @@ export default class PeoplesPage extends Component {
         let {actions} = this.props;
         actions.loadPeoples();
         actions.loadHome(actions);
+
+        this.startPoll();
     };
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+
+    startPoll() {
+        this.interval = setInterval(() => {
+            this.props.actions.loadPeoples();
+        }, 15000);
+    }
 
     render() {
         const {actions, peoplesState, homeState} = this.props;
@@ -27,13 +39,12 @@ export default class PeoplesPage extends Component {
             <div>
                 {PeoplesPage.renderUserForm(homeState, actions)}
                 {PeoplesPage.renderPeoples(peoplesState)}
-                <button onClick={() => PeoplesPage.handleLoadPeoplesButtonClicked(actions)}>Load</button>
             </div>
         );
     };
 
     static renderUserForm(homeState, actions) {
-        const {home, isPending, addUserIsPending, error} = homeState;
+        const {home, isPending, addUserIsPending, error, addUserError} = homeState;
         const {form, user} = home;
 
         return (
@@ -41,8 +52,9 @@ export default class PeoplesPage extends Component {
                 isPending={isPending}
                 addUserIsPending={addUserIsPending}
                 error={error}
+                addUserError={addUserError}
                 form={form}
-                addUserClicked={(user) => {
+                addUserClicked={(_) => {
                     actions.createUser(actions, user)
                 }}
                 formChanged={(user) => {
@@ -62,10 +74,6 @@ export default class PeoplesPage extends Component {
                 isPending={ isPending }
                 error={ error }/>
         );
-    };
-
-    static handleLoadPeoplesButtonClicked(actions) {
-        actions.loadPeoples()
     };
 }
 

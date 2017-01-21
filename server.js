@@ -103,6 +103,62 @@ app.get('/peoples/', function (req, res) {
                 code: "vk",
                 name: "dimorinny"
             }]
+        }, {
+            nickname: "DimorinnyLol",
+            gender: {
+                code: "female",
+                name: "Female"
+            },
+            level: {
+                code: "beginner",
+                name: "Beginner"
+            },
+            country: {
+                code: "it",
+                name: "Italy",
+            },
+            topics: [{
+                code: "12xcsdf",
+                name: "School"
+            }, {
+                code: "12xcsd4",
+                name: "Country"
+            }],
+            contacts: [{
+                code: "skype",
+                name: "dimorinny"
+            }, {
+                code: "vk",
+                name: "dimorinny"
+            }]
+        }, {
+            nickname: "Dimorinny",
+            gender: {
+                code: "male",
+                name: "Male"
+            },
+            level: {
+                code: "beginner",
+                name: "Beginner"
+            },
+            country: {
+                code: "fr",
+                name: "France",
+            },
+            topics: [{
+                code: "12xcsdf",
+                name: "School"
+            }, {
+                code: "12xcsd4",
+                name: "Country"
+            }],
+            contacts: [{
+                code: "skype",
+                name: "dimorinny"
+            }, {
+                code: "vk",
+                name: "dimorinny"
+            }]
         }]
     };
 
@@ -136,29 +192,26 @@ app.get('/home/', function (req, res) {
                 {name: 'Country', code: 'country'},
             ],
             contacts: [
-                {code: "skype", name: "dimorinny"},
-                {code: "vk", name: "dimorinny"}
+                {name: "Skype", code: "skype"},
+                {name: "Vkontakte", code: "vk"}
             ]
         },
         user: {
             nickname: "Dimorinny",
-            gender: "male",
-            level: "beginner",
-            country: {
-                code: "fr",
-                name: "France",
+            gender: {
+                code: "",
+                name: ""
             },
-            topics: [{
-                code: "school",
-                name: "School"
-            }],
-            contacts: [{
-                code: "skype",
-                name: "dimorinny"
-            }, {
-                code: "vk",
-                name: "dimorinny"
-            }]
+            level: {
+                code: "beginner",
+                name: "Beginner"
+            },
+            country: {
+                code: "",
+                name: "",
+            },
+            topics: [],
+            contacts: []
         }
     };
 
@@ -172,8 +225,14 @@ app.post('/user/', function (req, res) {
     const user = {
         user: {
             nickname: "Dimorinny1",
-            gender: "male",
-            level: "beginner",
+            gender: {
+                code: "male",
+                name: "Male"
+            },
+            level: {
+                code: "upper_intermediate",
+                name: "Upper-Intermidiate"
+            },
             country: {
                 code: "fr",
                 name: "France",

@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
-import {Image, Icon, Flag, Popup, Table, Label} from 'semantic-ui-react';
+import EmptyField from './empty/empty';
+import {Icon, Flag, Popup, Table, Label} from 'semantic-ui-react';
 
 const fieldTypes = PropTypes.shape({
     code: PropTypes.string.isRequired,
@@ -19,9 +20,19 @@ export default class People extends Component {
         }
     };
 
+    static LEVEL_COLORS = {
+        beginner: 'green',
+        pre_intermediate: 'olive',
+        intermediate: 'yellow',
+        upper_intermediate: 'orange',
+        advanced: 'red',
+        native: 'black'
+    };
+
     static propTypes = {
         people: PropTypes.shape({
             nickname: PropTypes.string.isRequired,
+            age: PropTypes.number.isRequired,
             gender: fieldTypes.isRequired,
             level: fieldTypes.isRequired,
             country: fieldTypes.isRequired,
@@ -31,19 +42,16 @@ export default class People extends Component {
     };
 
     render() {
-        const {nickname, gender, level, country, topics, contacts} = this.props.people;
+        const {nickname, age, gender, level, country, topics, contacts} = this.props.people;
 
         return (
             <Table.Row>
                 <Table.Cell>{ nickname }</Table.Cell>
-                <Table.Cell>{ People.getAvatar(gender) }</Table.Cell>
-                <Table.Cell>{ level.name }</Table.Cell>
+                <Table.Cell>{ People.getGender(gender) }</Table.Cell>
+                <Table.Cell>{ People.getAge(age) }</Table.Cell>
+                <Table.Cell>{ People.getLevel(level) }</Table.Cell>
                 <Table.Cell>{ People.getCountry(country) }</Table.Cell>
-                <Table.Cell>
-                    <div className='people_interests'>
-                        { topics.map((item, index) => People.getTopic(item, index)) }
-                    </div>
-                </Table.Cell>
+                <Table.Cell>{ People.getTopics(topics) }</Table.Cell>
                 <Table.Cell>
                     { contacts.map((item, index) => People.getContact(item, index))}
                 </Table.Cell>
@@ -51,40 +59,85 @@ export default class People extends Component {
         );
     };
 
-    static getAvatar(gender) {
-        const {avatar, info} = People.GENDER_INFO[gender.code];
+    static getGender(gender) {
+        if (gender.code) {
+            const {avatar, info} = People.GENDER_INFO[gender.code];
+            return (
+                <Label image>
+                    <img src={avatar}/>
+                    {info}
+                </Label>
+            );
+        } else {
+            return <EmptyField/>;
+        }
+    };
+
+    static getAge(age) {
+        if (age > 0 && age < 150) {
+            return <div>{age}</div>;
+        } else {
+            return <EmptyField/>;
+        }
+    };
+
+    static getLevel(level) {
         return (
-            <Popup
-                trigger={<Image src={avatar} avatar/>}
-                positioning='right center'
-                content={info}
-            />
+            <Label color={People.LEVEL_COLORS[level.code]}>
+                {level.name}
+            </Label>
         );
     };
 
     static getCountry(country) {
-        return (
-            <div>
-                <Flag name={country.code}/>
-                <span>{country.name}</span>
-            </div>
-        );
+        if (country.code) {
+            return (
+                <div>
+                    <Flag name={country.code}/>
+                    <span>{country.name}</span>
+                </div>
+            );
+        } else {
+            return <EmptyField/>;
+        }
     };
+
+    static getUrlByContact(contact) {
+        if (contact.code == 'skype') {
+            return 'skype:' + contact.name + '?chat';
+        }
+    }
 
     static getContact(contact, index) {
         return (
             <Popup
                 key={index}
-                trigger={<Icon name={contact.code} color='grey' size='large'/>}
+                trigger={
+                    <a href={People.getUrlByContact(contact)}>
+                        <Icon name={contact.code} color='grey' size='large'/>
+                    </a>
+                }
                 content='Contact with user'
                 positioning='top center'
             />
         );
     };
 
-    static getTopic(topic, index) {
-        return (
-            <Label key={index} className='people_interest' horizontal>{topic.name}</Label>
-        );
+    static getTopics(topics) {
+        if (topics.length > 0) {
+            return (
+                <div className='people_interests'>
+                    {
+                        topics.map((item, index) => {
+                            return (
+                                <Label key={index} className='people_interest' horizontal>{item.name}</Label>
+                            );
+                        })
+                    }
+                </div>
+            );
+        } else {
+            return <EmptyField/>;
+        }
     };
 };

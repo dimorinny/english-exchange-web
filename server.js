@@ -21,6 +21,7 @@ app.get('/peoples/', function (req, res) {
     const peoples = {
         "peoples": [{
             nickname: "Dimorinny",
+            age: 12,
             gender: {
                 code: "male",
                 name: "Male"
@@ -42,24 +43,25 @@ app.get('/peoples/', function (req, res) {
             }],
             contacts: [{
                 code: "skype",
-                name: "dimorinny"
+                name: "lukaville"
             }, {
                 code: "vk",
-                name: "dimorinny"
+                name: "lukaville"
             }]
         }, {
-            nickname: "DimorinnyLol",
+            nickname: "Dimorinny",
+            age: 115,
             gender: {
-                code: "female",
-                name: "Female"
+                code: "male",
+                name: "Male"
             },
             level: {
                 code: "beginner",
                 name: "Beginner"
             },
             country: {
-                code: "it",
-                name: "Italy",
+                code: "fr",
+                name: "France",
             },
             topics: [{
                 code: "12xcsdf",
@@ -77,6 +79,7 @@ app.get('/peoples/', function (req, res) {
             }]
         }, {
             nickname: "Dimorinny",
+            age: -1,
             gender: {
                 code: "male",
                 name: "Male"
@@ -88,34 +91,6 @@ app.get('/peoples/', function (req, res) {
             country: {
                 code: "fr",
                 name: "France",
-            },
-            topics: [{
-                code: "12xcsdf",
-                name: "School"
-            }, {
-                code: "12xcsd4",
-                name: "Country"
-            }],
-            contacts: [{
-                code: "skype",
-                name: "dimorinny"
-            }, {
-                code: "vk",
-                name: "dimorinny"
-            }]
-        }, {
-            nickname: "DimorinnyLol",
-            gender: {
-                code: "female",
-                name: "Female"
-            },
-            level: {
-                code: "beginner",
-                name: "Beginner"
-            },
-            country: {
-                code: "it",
-                name: "Italy",
             },
             topics: [{
                 code: "12xcsdf",
@@ -133,25 +108,20 @@ app.get('/peoples/', function (req, res) {
             }]
         }, {
             nickname: "Dimorinny",
+            age: 0,
             gender: {
-                code: "male",
-                name: "Male"
+                code: "",
+                name: ""
             },
             level: {
-                code: "beginner",
-                name: "Beginner"
+                code: "native",
+                name: "Native"
             },
             country: {
-                code: "fr",
-                name: "France",
+                code: "",
+                name: "",
             },
-            topics: [{
-                code: "12xcsdf",
-                name: "School"
-            }, {
-                code: "12xcsd4",
-                name: "Country"
-            }],
+            topics: [],
             contacts: [{
                 code: "skype",
                 name: "dimorinny"
@@ -189,7 +159,14 @@ app.get('/home/', function (req, res) {
             topics: [
                 {name: 'School', code: 'school'},
                 {name: 'Home', code: 'home'},
-                {name: 'Country', code: 'country'},
+                {name: 'Cou132ntry', code: 'c1ountry'},
+                {name: 'Cou123ntry', code: 'co3untry'},
+                {name: '4Country', code: 'cou2ntry'},
+                {name: 'Cou43ntry', code: 'cou12ntry'},
+                {name: 'Coun234try', code: 'co5untry'},
+                {name: 'Cou34ntry', code: 'cou4ntry'},
+                {name: 'Coun23try', code: 'cou123123ntry'},
+                {name: 'Coun12try', code: 'cou112ntry'},
             ],
             contacts: [
                 {name: "Skype", code: "skype"},
@@ -198,6 +175,7 @@ app.get('/home/', function (req, res) {
         },
         user: {
             nickname: "Dimorinny",
+            age: 10,
             gender: {
                 code: "",
                 name: ""
@@ -225,6 +203,7 @@ app.post('/user/', function (req, res) {
     const user = {
         user: {
             nickname: "Dimorinny1",
+            age: 15,
             gender: {
                 code: "male",
                 name: "Male"

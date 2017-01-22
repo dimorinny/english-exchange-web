@@ -9,6 +9,8 @@ import './peoples-page.css';
 @connect(mapStateToProps, mapDispatchToProps)
 export default class PeoplesPage extends Component {
 
+    static UPDATE_INTERVAL = 15000;
+
     static propTypes = {
         actions: PropTypes.object.isRequired,
         peoplesState: PropTypes.object.isRequired
@@ -29,7 +31,7 @@ export default class PeoplesPage extends Component {
     startPoll() {
         this.interval = setInterval(() => {
             this.props.actions.loadPeoples();
-        }, 15000);
+        }, PeoplesPage.UPDATE_INTERVAL);
     }
 
     render() {

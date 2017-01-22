@@ -48,6 +48,7 @@ export default class Peoples extends Component {
                         <Table.Row>
                             <Table.HeaderCell>Nickname</Table.HeaderCell>
                             <Table.HeaderCell>Gender</Table.HeaderCell>
+                            <Table.HeaderCell>Age</Table.HeaderCell>
                             <Table.HeaderCell>Level</Table.HeaderCell>
                             <Table.HeaderCell>Country</Table.HeaderCell>
                             <Table.HeaderCell>Topics</Table.HeaderCell>

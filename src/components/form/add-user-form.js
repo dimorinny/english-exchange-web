@@ -169,6 +169,16 @@ export default class UserForm extends Component {
                     </Form.Group>
 
                     <Form.Group widths={16}>
+
+                        <Form.Input
+                            label='Age'
+                            name='age'
+                            width={4}
+                            type='number'
+                            value={user.age}
+                            onChange={(event, {value}) => this.handleChange('age', parseInt(value))}
+                            placeholder='Age'/>
+
                         <Form.Input
                             label='Skype'
                             name='skype'
@@ -180,7 +190,7 @@ export default class UserForm extends Component {
                         <Form.Select
                             label='Topics'
                             name='topics'
-                            width={12}
+                            width={8}
                             options={form.topics.map(toSemanticItem)}
                             value={user.topics.map((item) => item.code)}
                             onChange={(event, {value}) => this.handleChangeTopics('topics', value)}

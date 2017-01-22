@@ -9,7 +9,7 @@ const server = new WebpackDevServer(webpack(config), {
     historyApiFallback: true,
     proxy: [
         {
-            path: '^\/(home|peoples|user)/',
+            path: '^\/(home|users|user)',
             target: 'http://localhost:3001'
         }
     ]
@@ -17,9 +17,9 @@ const server = new WebpackDevServer(webpack(config), {
 
 const app = express();
 
-app.get('/peoples/', function (req, res) {
-    const peoples = {
-        "peoples": [{
+app.get('/users', function (req, res) {
+    const users = {
+        "users": [{
             nickname: "Dimorinny",
             age: 12,
             gender: {
@@ -133,11 +133,11 @@ app.get('/peoples/', function (req, res) {
     };
 
     setTimeout(function () {
-        res.json(peoples);
+        res.json(users);
     }, 1500);
 });
 
-app.get('/home/', function (req, res) {
+app.get('/home', function (req, res) {
     const home = {
         form: {
             gender: [
@@ -194,11 +194,14 @@ app.get('/home/', function (req, res) {
     };
 
     setTimeout(function () {
-        res.json({home: home});
+        res.json({
+            form: home.form,
+            user: home.user
+        });
     }, 50);
 });
 
-app.post('/user/', function (req, res) {
+app.post('/user', function (req, res) {
     console.log(req);
     const user = {
         user: {

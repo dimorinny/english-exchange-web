@@ -92,10 +92,13 @@ export default class People extends Component {
     static getCountry(country) {
         if (country.code) {
             return (
-                <div>
-                    <Flag name={country.code}/>
-                    <span>{country.name}</span>
-                </div>
+                <Popup
+                    trigger={
+                        <Flag name={country.code}/>
+                    }
+                    content={country.name}
+                    positioning='right center'
+                />
             );
         } else {
             return <EmptyField/>;

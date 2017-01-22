@@ -21,7 +21,7 @@ export default typeToReducer({
         }),
         FULFILLED: (state, action) => ({
             ...state,
-            peoples: action.payload.peoples,
+            peoples: action.payload.users,
             isPending: false,
             error: null
         })

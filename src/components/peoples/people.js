@@ -1,7 +1,8 @@
 import React, {Component, PropTypes} from 'react';
-import {Icon, Flag, Popup, Table, Label} from 'semantic-ui-react';
+import {Icon, Flag, Popup, Table, Label, Image} from 'semantic-ui-react';
 import EmptyField from './empty/empty';
 import OnlineIndicator from './indicator/online';
+import './people.css';
 
 const fieldTypes = PropTypes.shape({
     code: PropTypes.string.isRequired,
@@ -73,10 +74,12 @@ export default class People extends Component {
         if (gender.code) {
             const {avatar, info} = People.GENDER_INFO[gender.code];
             return (
-                <Label image>
-                    <img src={avatar}/>
-                    {info}
-                </Label>
+                <Popup
+                    trigger={
+                        <Image src={avatar} avatar />
+                    }
+                    content={info}
+                    positioning='top center'/>
             );
         } else {
             return <EmptyField/>;
@@ -93,7 +96,8 @@ export default class People extends Component {
 
     static getLevel(level) {
         return (
-            <Label color={People.LEVEL_COLORS[level.code]}>
+            <Label className='people_level_label'
+                   color={People.LEVEL_COLORS[level.code]}>
                 {level.name}
             </Label>
         );

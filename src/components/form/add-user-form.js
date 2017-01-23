@@ -25,6 +25,14 @@ function getCode(item) {
     }
 }
 
+function getAge(age) {
+    if (age != 0) {
+        return age.toString()
+    } else {
+        return '';
+    }
+}
+
 function getUserSkype(contacts) {
     const skypeItem = contacts.find((item) => item.code == 'skype');
 
@@ -175,7 +183,7 @@ export default class UserForm extends Component {
                             name='age'
                             width={4}
                             type='number'
-                            value={user.age}
+                            value={getAge(user.age)}
                             onChange={(event, {value}) => this.handleChange('age', parseInt(value))}
                             placeholder='Age'/>
 

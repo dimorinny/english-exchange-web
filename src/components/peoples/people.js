@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
-import EmptyField from './empty/empty';
 import {Icon, Flag, Popup, Table, Label} from 'semantic-ui-react';
+import EmptyField from './empty/empty';
+import OnlineIndicator from './indicator/online';
 
 const fieldTypes = PropTypes.shape({
     code: PropTypes.string.isRequired,
@@ -46,7 +47,7 @@ export default class People extends Component {
 
         return (
             <Table.Row>
-                <Table.Cell>{ nickname }</Table.Cell>
+                <Table.Cell>{ People.getNickname(nickname) }</Table.Cell>
                 <Table.Cell>{ People.getGender(gender) }</Table.Cell>
                 <Table.Cell>{ People.getAge(age) }</Table.Cell>
                 <Table.Cell>{ People.getLevel(level) }</Table.Cell>
@@ -56,6 +57,15 @@ export default class People extends Component {
                     { contacts.map((item, index) => People.getContact(item, index))}
                 </Table.Cell>
             </Table.Row>
+        );
+    };
+
+    static getNickname(nickname) {
+        return (
+            <div>
+                <OnlineIndicator/>
+                <span>{nickname}</span>
+            </div>
         );
     };
 
@@ -97,8 +107,7 @@ export default class People extends Component {
                         <Flag name={country.code}/>
                     }
                     content={country.name}
-                    positioning='right center'
-                />
+                    positioning='right center'/>
             );
         } else {
             return <EmptyField/>;

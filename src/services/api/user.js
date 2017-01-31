@@ -4,6 +4,7 @@ const ADD_USER = '/user';
 
 export function addUser(actions, user) {
     return fetch(__BASE__ + ADD_USER, {
+        credentials: 'same-origin',
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

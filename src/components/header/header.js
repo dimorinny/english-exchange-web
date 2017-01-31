@@ -21,7 +21,7 @@ export default class Header extends Component {
                         className='header_text'>
                         English 365
                         <SemanticHeader.Subheader>
-                            Learn English together
+                            Learn English Together
                         </SemanticHeader.Subheader>
                     </SemanticHeader.Content>
                 </SemanticHeader>

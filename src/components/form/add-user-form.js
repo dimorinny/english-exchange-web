@@ -211,7 +211,7 @@ export default class UserForm extends Component {
                         circular
                         basic
                         icon='add'
-                        content='Add to list'
+                        content='Save to list'
                         type='submit'/>
                 </Form>
             );

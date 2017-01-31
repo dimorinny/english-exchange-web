@@ -1,6 +1,9 @@
 FROM jmfirth/webpack:7
 
+ARG base
+
 ENV NODE_ENV production
+ENV BASE $base
 
 WORKDIR /web
 

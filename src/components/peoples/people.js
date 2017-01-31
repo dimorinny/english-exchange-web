@@ -130,7 +130,7 @@ export default class People extends Component {
                 key={index}
                 trigger={
                     <a href={People.getUrlByContact(contact)}>
-                        <Icon name={contact.code} color='grey' size='large'/>
+                        <Icon className='people_contact_skype' name={contact.code} size='large'/>
                     </a>
                 }
                 content='Contact with user'

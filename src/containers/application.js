@@ -1,5 +1,4 @@
 import React, {Component, PropTypes} from 'react';
-import {Grid} from 'semantic-ui-react';
 import {connect} from 'react-redux';
 import Header from '../components/header/header';
 import './application.css';
@@ -15,15 +14,13 @@ export default class Application extends Component {
         let {children} = this.props;
 
         return (
-            <div>
-                <Grid centered>
-                    <Grid.Column className='container' width={14}>
-                        <Header/>
-                    </Grid.Column>
-                    <Grid.Column className='container' width={14}>
-                        { children }
-                    </Grid.Column>
-                </Grid>
+            <div className='container'>
+                <div className='container_row'>
+                    <Header/>
+                </div>
+                <div className='container_row'>
+                    { children }
+                </div>
             </div>
         );
     };
